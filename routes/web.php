@@ -11,9 +11,32 @@
 |
 */
 
-Route::get('/', 'Pagescontroller@hola');
-Route::get('hola', 'Pagescontroller@welcome');
-Route::get('api1', 'Pagescontroller@api1');
+use App\Http\Controllers\Pagescontroller;
+use App\Http\Controllers\AlumnoController;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', 'Pagescontroller@welcome');
+
+Route::get('hola', 'Pagescontroller@hola');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/alumno', 'AlumnoController')->middleware('auth');
+
+Route::get('/crear', function () {
+    return view('crear');
+});
+
+Route::get('/todosalumno', 'AlumnoController@allestudent');
 

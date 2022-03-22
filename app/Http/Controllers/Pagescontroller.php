@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Alumno;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,42 @@ class Pagescontroller extends Controller
        $response = $client->request('GET','posts');
        dd($response);
     }
+
+    public function buscar(Request $request)
+{   
+    if($request->ajax()){
+        return Alumno::where('user_id', auth()->id())->get();
+    }else{
+        return view('home');
+    }
+}  
+
+public function guardar(Request $request)
+{
+    $nota = new Alumno();
+    $nota->nombre = $request->nombre;
+    $nota->descripcion = $request->descripcion;
+    $nota->user_id = auth()->id();
+    $nota->save();
+
+    return $nota;
+}  
+
+public function update(Request $request, $id)
+{
+    $nota = Alumno::find($id);
+    $nota->nombre = $request->nombre;
+    $nota->descripcion = $request->descripcion;
+    $nota->save();
+    return $nota;
+}
+
+
+public function destroy($id)
+{
+    $nota = Alumno::find($id);
+    $nota->delete();
+}
 
     
 }

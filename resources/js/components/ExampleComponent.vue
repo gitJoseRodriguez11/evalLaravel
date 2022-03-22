@@ -6,13 +6,15 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        I'm an example componentttttttt.
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+
 
 <script>
     export default {
