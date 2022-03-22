@@ -13,6 +13,8 @@
 
 use App\Http\Controllers\Pagescontroller;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\CreateEvalStudentsCRUDsTable;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,3 +42,4 @@ Route::get('/crear', function () {
 
 Route::get('/todosalumno', 'AlumnoController@allestudent');
 
+Route::resource('/crearstudents', 'CreateEvalStudentsCRUDsTable')->middleware('auth');
